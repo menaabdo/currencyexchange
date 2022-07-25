@@ -1,0 +1,46 @@
+<div class='border m-2 row'>
+
+<form (ngSubmit)='convert()' #f='ngForm'>
+    <div class="row p-2 d-flex justify-content-between align-items-end">
+        <div class="col-md-3 form-group ">
+            <label class="">Amount</label>
+            <input type="number" required class="form-control" name='amount' [value]=amount [(ngModel)]=amount>
+        </div>
+
+        <div class="col-md-2  form-group">
+            <label class="">From</label>
+            <select class=" form-control" name='s1' [(ngModel)]=symbol1>
+                <option *ngFor='let symbol of symbols?.symbols | keyvalue' [selected]='symbol.key==symbol1'>
+                    {{symbol.key}}
+                </option>
+               
+              </select>
+        </div>
+
+            <div class="col-md-1 form-group ">
+               <img src='../../assets/arrow.png' width="40px" (click)='exchange()'>
+            </div>
+        
+            <div class="col-md-2 form-group">
+                <label class="">To</label>
+                <select class=" form-control" name="s2" [(ngModel)]=symbol2 >
+                    <option *ngFor='let symbol of symbols?.symbols| keyvalue' [selected]='symbol.key==symbol2'>
+                        {{symbol.key}}
+                    </option>
+                   
+                  </select>
+            </div>    
+           
+    </div>
+    <div class="row p-2 d-flex justify-content-end"> <button [disabled]='f.invalid' class="border-rounded btn btn-primary col-md-6 ">convert</button> 
+    </div>
+</form>
+<div class="row" *ngIf='info'>
+<div class='col-md-2'>1 {{query?.from}}={{info?.rate}}{{query?.to}}</div>
+<div class=" col-md-3 p-4">{{result}} {{query?.to}}</div>
+<button class="border-rounded btn btn-primary col-md-3 ">more detailes</button>
+
+
+</div>
+
+</div>

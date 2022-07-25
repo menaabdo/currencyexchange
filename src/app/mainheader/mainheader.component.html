@@ -1,0 +1,15 @@
+<nav>
+    <div class="logo">
+      <img src="assets/logo.png" alt="Logo Image" width='40px' height="40px">
+    </div>
+    <div class="hamburger" (click)="toggleClass()" [class.toggle]="toggle">
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+    </div>
+    <ul class="nav-links" [class.open]="open">
+      <li><a routerLink="/home" >EUR-USD Detailes</a></li>
+      <li><a routerLink="/aboutUs">EUR-GPB Detailes</a></li>
+      
+    </ul>
+  </nav>
