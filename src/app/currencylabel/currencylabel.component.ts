@@ -18,7 +18,7 @@ export class CurrencylabelComponent implements OnInit {
   
 
 path!:string
-symbols!:symbol
+symbols!:any
 convertedresponse!:any
 info!:any
 result!:number
@@ -36,6 +36,7 @@ data!:number[]
 popularres!:any
 s!:KeyType
 mydata!:Rates
+messerror!:string
 
 popular='EUR%2CCHF%2CGBP%2CJPY%2CJPY%2CGBP%2CUSD%2CCAD%2CEUR%2CJPY%2CAUD%2CAWG%2CARS'
   constructor(private myservice:ServiceService,private active :ActivatedRoute,private route:Router) { 
@@ -73,7 +74,7 @@ if(this.path=='detailes'){
     )
      .subscribe((response)=>{
        this.symbols=response.symbols;
-       console.log(this.symbols)
+       
        },(err)=>{this.route.navigateByUrl('/oops')})
     
   }
@@ -93,7 +94,12 @@ this.symbol2=temp
     
    let date =yyyy + '-'+  mm + '-' + dd ;
    
-   this.myservice.convert(this.symbol2,this.symbol1,this.amount,date).subscribe((response)=>{
+   this.myservice.convert(this.symbol2,this.symbol1,this.amount,date).pipe(
+    catchError(() => {
+      return throwError(() => new Error('ups sommething happend'));
+    })
+  )
+   .subscribe((response)=>{
      
     
     this.convertedresponse=response
@@ -111,7 +117,7 @@ this.symbol2=temp
     this.myservice.to=this.to
     
     
-  })
+  },(err)=>{console.log(err)})
 
    } 
    getfullname(){

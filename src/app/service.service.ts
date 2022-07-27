@@ -20,12 +20,12 @@ export class ServiceService {
   to!:string
   fullname!:string
 
-  headers=new HttpHeaders({"apikey":"hou5qzcEqAd3XfPevqsa7v57Cx2ubGjB"})
+  headers=new HttpHeaders({"apikey":"WKUi5JOChztpJKF0YpiDR7F3kSRoI80t"})
   constructor(private httpclient: HttpClient) { }
   symbols(){
 
     const headers =this.headers
-    return this.httpclient.get<{symbols:symbol}>(`${environment.apiURL}symbols`,)
+    return this.httpclient.get<{symbols:any}>(`${environment.apiURL}symbols`,{headers})
 
   }
   //////////////////////////////////////////////////////////
