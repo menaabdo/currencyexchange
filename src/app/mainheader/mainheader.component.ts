@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mainheader.component.css']
 })
 export class MainheaderComponent implements OnInit {
-
+data='data'
   constructor() { }
 
   ngOnInit(): void {

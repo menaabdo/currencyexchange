@@ -1,3 +1,4 @@
+<div class="row d-flex justify-content-between m-2 " *ngIf='path=="detailes"'><h3 class="col-md-6">{{fullname}}</h3><a routerLink='/home' class=" border-rounded btn  btn-sm btn-primary col-md-2 ">back to home</a></div>
 <div class='border m-2 row'>
 
 <form (ngSubmit)='convert()' #f='ngForm'>
@@ -9,8 +10,8 @@
 
         <div class="col-md-2  form-group">
             <label class="">From</label>
-            <select class=" form-control" name='s1' [(ngModel)]=symbol1>
-                <option *ngFor='let symbol of symbols?.symbols | keyvalue' [selected]='symbol.key==symbol1'>
+            <select class=" form-control" name='s1' [(ngModel)]=symbol1 (click)='getfullname()'>
+                <option id={{symbol.value}} *ngFor='let symbol of symbols?.symbols | keyvalue' [selected]='symbol.key==symbol1' [disabled]='path=="detailes"'>
                     {{symbol.key}}
                 </option>
                
@@ -35,12 +36,32 @@
     <div class="row p-2 d-flex justify-content-end"> <button [disabled]='f.invalid' class="border-rounded btn btn-primary col-md-6 ">convert</button> 
     </div>
 </form>
-<div class="row" *ngIf='info'>
-<div class='col-md-2'>1 {{query?.from}}={{info?.rate}}{{query?.to}}</div>
-<div class=" col-md-3 p-4">{{result}} {{query?.to}}</div>
-<button class="border-rounded btn btn-primary col-md-3 ">more detailes</button>
-
-
-</div>
+<div class="row" *ngIf='result'>
+<div class='col-md-3'>1 {{from}}={{rate}}{{to}}</div>
+<div class=" col-md-3 p-4">{{result}} {{to}}</div>
+<a  *ngIf ='path!="detailes"' class="border-rounded btn btn-primary col-md-3 " routerLink='/detailes'>more detailes</a>
 
 </div>
+</div>
+<div *ngIf='path=="home"'>
+    <h3>most popular currencies </h3>
+<div  class="row d-flex justify-content-between m-2 p-2">
+    <div class="col-md-3 border">jfjfjjf</div>
+    <div class="col-md-3 border">fjfjfj</div>
+    <div class="col-md-3 border">fjfjjfjjf</div>
+
+</div>
+<div  class="row d-flex justify-content-between m-2 p-2">
+    <div class="col-md-3 border ">jfjfjjf</div>
+    <div class="col-md-3 border " >fjfjfj</div>
+    <div class="col-md-3 border ">fjfjjfjjf</div>
+
+</div>
+</div>
+<div class="row d-flex justify-content-center">
+    <div class='col-md-4'>
+    <canvas id="myChart" ></canvas>
+   </div>
+</div>
+
+

@@ -8,19 +8,25 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { MainheaderComponent } from './mainheader/mainheader.component';
 import { CurrencylabelComponent } from './currencylabel/currencylabel.component';
 import { FormsModule } from '@angular/forms';
+import { DetailesPageComponent } from './detailes-page/detailes-page.component';
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     MainheaderComponent,
-    CurrencylabelComponent
+    CurrencylabelComponent,
+    DetailesPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule  
+    FormsModule  ,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
