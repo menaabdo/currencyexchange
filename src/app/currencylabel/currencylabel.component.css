@@ -1,1 +1,9 @@
 img{cursor: pointer;}
+.row{background-color: #1e1f22;}
+.card{
+    color: black;
+}
+.header{
+    background-color: white;
+    color: black;
+}

@@ -20,7 +20,7 @@ export class ServiceService {
   to!:string
   fullname!:string
 
-  headers=new HttpHeaders({"apikey":"k4uZoQJzYMhJBF6KI5oJHcR8kzuDP4dt"})
+  headers=new HttpHeaders({"apikey":"hou5qzcEqAd3XfPevqsa7v57Cx2ubGjB"})
   constructor(private httpclient: HttpClient) { }
   symbols(){
 
@@ -36,7 +36,13 @@ export class ServiceService {
   //////////////////////////////////////
   ratesofpastyear(base:string,symbols:string,end_date:string,start_date:string){
     const headers=this.headers
-    console.log(this.symbol1)
+  
     return this.httpclient.get(`${environment.apiURL}timeseries?base=${base}&symbols=${symbols}&end_date=${end_date}&start_date=${start_date}`,{headers})
+  }
+  latest(symbols:string,base='USD'){
+    const headers=this.headers
+  
+    return this.httpclient.get(`${environment.apiURL}latest?symbols=${symbols}&base=USD`,{headers})
+ 
   }
 }

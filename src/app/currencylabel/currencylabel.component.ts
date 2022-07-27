@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 //import { Chart,LinearScale, BarElement, BarController, CategoryScale, Decimation, Filler, Legend, Title, Tooltip} from 'chart.js';
 import Chart from 'chart.js/auto';
+import { Latest } from '../models/latest.model';
+import { Rates } from '../models/rates.model';
 import { ServiceService } from '../service.service';
 
 @Component({
@@ -10,6 +13,8 @@ import { ServiceService } from '../service.service';
   styleUrls: ['./currencylabel.component.css']
 })
 export class CurrencylabelComponent implements OnInit {
+  
+
 path!:string
 symbols!:any
 convertedresponse!:any
@@ -25,16 +30,22 @@ fullname='EUR - European Union Euro'
  today = new Date();
  allrates!:any
  specificrates!:any
-
 data!:number[]
-  constructor(private myservice:ServiceService,private active :ActivatedRoute) { 
+popularres!:any
+
+mydata!:Rates
+
+popular='EUR%2CCHF%2CGBP%2CJPY%2CJPY%2CGBP%2CUSD%2CCAD%2CEUR%2CJPY%2CAUD%2CAWG%2CARS'
+  constructor(private myservice:ServiceService,private active :ActivatedRoute,private formBuilder: FormBuilder) { 
     //Chart.register(BarElement, BarController, CategoryScale, Decimation, Filler, Legend, Title, Tooltip);
  
   }
 
   ngOnInit(): void {
 this.allsymbols()
+
 this.path=(this.active.snapshot.url[0].path)
+
 if(this.path=='detailes'){
   this.symbol1=this.myservice.symbol1
   this.symbol2=this.myservice.symbol2
@@ -47,6 +58,8 @@ if(this.path=='detailes'){
   
   this.rates()
 }
+
+
 
  
   }
@@ -142,6 +155,18 @@ this.symbol2=temp
       console.log(response)})
  
    }
+ popular_curr(){
+  this.myservice.latest(this.popular).subscribe((res)=>{
+    this.popularres=res
+    this.mydata=this.popularres.rates
+    })
+ }
+ validate(){
+   if(isNaN(this.amount)){
+    
 
+   }
+  
+ }
 
 }

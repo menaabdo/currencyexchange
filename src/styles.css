@@ -1,2 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.css"
+@import "~bootstrap/dist/css/bootstrap.css";
+body {
+    background-color: black;
+    /* background-repeat:repeat;
+    background-size:100% 100%; */
+    color:white !important;
+    /* z-index: -1 !important; */
+}
+.row{background-color: #1e1f22;}
+h3{color: black;}
