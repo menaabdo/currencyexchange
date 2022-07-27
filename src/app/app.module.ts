@@ -9,6 +9,7 @@ import { MainheaderComponent } from './mainheader/mainheader.component';
 import { CurrencylabelComponent } from './currencylabel/currencylabel.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailesPageComponent } from './detailes-page/detailes-page.component';
+import { ErrorpageComponent } from './errorpage/errorpage.component';
 
 
 
@@ -19,7 +20,8 @@ import { DetailesPageComponent } from './detailes-page/detailes-page.component';
     HomePageComponent,
     MainheaderComponent,
     CurrencylabelComponent,
-    DetailesPageComponent
+    DetailesPageComponent,
+    ErrorpageComponent
   ],
   imports: [
     BrowserModule,

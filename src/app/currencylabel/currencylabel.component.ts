@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 //import { Chart,LinearScale, BarElement, BarController, CategoryScale, Decimation, Filler, Legend, Title, Tooltip} from 'chart.js';
 import Chart from 'chart.js/auto';
 import { Latest } from '../models/latest.model';
 import { Rates } from '../models/rates.model';
 import { ServiceService } from '../service.service';
+import { catchError, throwError } from 'rxjs';
+
 
 @Component({
   selector: 'app-currencylabel',
@@ -16,7 +18,7 @@ export class CurrencylabelComponent implements OnInit {
   
 
 path!:string
-symbols!:any
+symbols!:symbol
 convertedresponse!:any
 info!:any
 result!:number
@@ -32,11 +34,11 @@ fullname='EUR - European Union Euro'
  specificrates!:any
 data!:number[]
 popularres!:any
-
+s!:KeyType
 mydata!:Rates
 
 popular='EUR%2CCHF%2CGBP%2CJPY%2CJPY%2CGBP%2CUSD%2CCAD%2CEUR%2CJPY%2CAUD%2CAWG%2CARS'
-  constructor(private myservice:ServiceService,private active :ActivatedRoute,private formBuilder: FormBuilder) { 
+  constructor(private myservice:ServiceService,private active :ActivatedRoute,private route:Router) { 
     //Chart.register(BarElement, BarController, CategoryScale, Decimation, Filler, Legend, Title, Tooltip);
  
   }
@@ -64,7 +66,15 @@ if(this.path=='detailes'){
  
   }
    allsymbols() {
-     this.myservice.symbols().subscribe((response)=>{this.symbols=response; console.log(this.symbols.symbols)})
+     this.myservice.symbols().pipe(
+      catchError(() => {
+        return throwError(() => new Error('ups sommething happend'));
+      })
+    )
+     .subscribe((response)=>{
+       this.symbols=response.symbols;
+       console.log(this.symbols)
+       },(err)=>{this.route.navigateByUrl('/oops')})
     
   }
   exchange(){
@@ -105,8 +115,9 @@ this.symbol2=temp
 
    } 
    getfullname(){
-    
-    this.fullname=this.symbol1 + this.symbols.symbol1[this.symbol1]
+    let s =this.s as keyof symbol
+    s=this.symbol1 as keyof symbol
+    this.fullname=this.symbol1 + this.symbols[s]! 
    
    }
    mychart(data:number[]){

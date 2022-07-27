@@ -1,5 +1,7 @@
 export interface Symbol{
     success:string,
-    symbols:object
+    symbols:{
+        key:string
+    }
 
 }

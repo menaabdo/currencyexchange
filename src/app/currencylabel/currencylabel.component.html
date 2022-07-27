@@ -12,12 +12,12 @@
 
         <div class="col-md-2  form-group">
             <label class="">From</label>
-            <select class=" form-control" name='s1' [(ngModel)]=symbol1 (click)='getfullname()'>
-                <option id={{symbol.value}} *ngFor='let symbol of symbols?.symbols | keyvalue' [selected]='symbol.key==symbol1' [disabled]='path=="detailes"'>
+            <!-- <select class=" form-control" name='s1' [(ngModel)]=symbol1 (click)='getfullname()'>
+                <option id={{symbol.value}} *ngFor='let symbol of symbols ' [selected]='symbol.key==symbol1' [disabled]='path=="detailes"'>
                     {{symbol.key}}
                 </option>
                
-              </select>
+              </select> -->
         </div>
 
             <div class="col-md-1 form-group ">
@@ -26,12 +26,12 @@
         
             <div class="col-md-2 form-group">
                 <label class="">To</label>
-                <select class=" form-control" name="s2" [(ngModel)]=symbol2 >
-                    <option *ngFor='let symbol of symbols?.symbols| keyvalue' [selected]='symbol.key==symbol2'>
+                <!-- <select class=" form-control" name="s2" [(ngModel)]=symbol2 >
+                    <option *ngFor='let symbol of symbols| keyvalue' [selected]='symbol.key==symbol2'>
                         {{symbol.key}} 
                     </option>
                    
-                  </select>
+                  </select> -->
             </div>    
            
     </div>

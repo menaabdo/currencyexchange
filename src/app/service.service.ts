@@ -25,7 +25,7 @@ export class ServiceService {
   symbols(){
 
     const headers =this.headers
-    return this.httpclient.get(`${environment.apiURL}symbols`,{headers})
+    return this.httpclient.get<{symbols:symbol}>(`${environment.apiURL}symbols`,)
 
   }
   //////////////////////////////////////////////////////////
